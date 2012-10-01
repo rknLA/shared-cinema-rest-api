@@ -1,4 +1,4 @@
-require 'spec-helper'
+require 'spec_helper'
 
 feature 'user can submit a video' do
 
