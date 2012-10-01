@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001033454) do
+ActiveRecord::Schema.define(:version => 20121001045028) do
 
   create_table "submitted_videos", :force => true do |t|
     t.integer  "user_id",                          :null => false
@@ -25,5 +25,13 @@ ActiveRecord::Schema.define(:version => 20121001033454) do
 
   add_index "submitted_videos", ["upvotes"], :name => "index_submitted_videos_on_upvotes"
   add_index "submitted_videos", ["user_id"], :name => "index_submitted_videos_on_user_id"
+
+  create_table "votes", :force => true do |t|
+    t.integer "video_id", :null => false
+    t.integer "user_id",  :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["video_id"], :name => "index_votes_on_video_id"
 
 end
