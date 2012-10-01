@@ -15,10 +15,10 @@ class VideosController < ApplicationController
     @video = SubmittedVideo.find(params[:id])
     @vote = @video.upvoted_by_user(params[:user_id]) if @video
 
-    if @vote.errors.empty?
+    if @vote and @vote.errors.empty?
       respond_with @vote, :location => video_url(@video)
     else
-      respond_with @vote, :location => nil
+      respond_with @vote, :location => nil, :status => :unprocessable_entity
     end
   end
 

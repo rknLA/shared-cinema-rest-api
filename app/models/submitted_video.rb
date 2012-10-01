@@ -18,8 +18,13 @@ class SubmittedVideo < ActiveRecord::Base
   end
 
   def upvoted_by_user(user_id)
-    self.votes.create(:video_id => self.id,
+    v = self.votes.create(:video_id => self.id,
                       :user_id => user_id)
+    if v.valid?
+      self.upvotes += 1
+      self.save
+    end
+    v
   end
 
 end
