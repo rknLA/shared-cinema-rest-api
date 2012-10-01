@@ -27,4 +27,15 @@ class SubmittedVideo < ActiveRecord::Base
     v
   end
 
+  def unvote_by_user(user_id)
+    v = self.votes.where(:user_id => user_id).first
+    if v
+      v.destroy
+      self.upvotes -= 1
+      self.save
+    end
+    true
+  end
+
+
 end
